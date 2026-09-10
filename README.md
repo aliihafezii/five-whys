@@ -61,12 +61,19 @@ Plus: steelman before you cut. If a step is missing, supply the strongest versio
 /plugin install five-whys
 ```
 
-**As a plain skill,** for Claude Code or anything else that reads skill files:
+**As a plain skill.** Clone once, then drop the folder wherever your agent looks for skills:
 
 ```bash
 git clone https://github.com/aliihafezii/five-whys.git
+
+# Claude Code
 cp -r five-whys/skills/five-whys-root-cause ~/.claude/skills/
+
+# Codex
+cp -r five-whys/skills/five-whys-root-cause ~/.codex/skills/
 ```
+
+The skill is a single `SKILL.md` with standard YAML frontmatter (`name`, `description`), so it works unmodified in any agent that reads skill files. The `.claude-plugin/` manifests are Claude Code specific and are simply ignored elsewhere.
 
 **As a document:** open [`skills/five-whys-root-cause/SKILL.md`](skills/five-whys-root-cause/SKILL.md) and use it by hand. It contains both protocols, both output templates, three worked examples, and the pitfalls list. No agent required.
 

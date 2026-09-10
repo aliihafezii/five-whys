@@ -1,6 +1,8 @@
 ---
 name: five-whys-root-cause
 description: Apply Taiichi Ohno's Five Whys to drill a problem or a claim down to its actual mechanism. Two modes. Retrospective mode takes a recurring failure or a gap from standard and walks the causal chain back to a systemic root cause plus a countermeasure that prevents recurrence. Prospective mode takes a prediction, forecast, threat model, projection, or extraordinary claim and forces out every intermediate step required to reach the stated endpoint, exposing the weakest link and the load-bearing unstated assumption. Trigger on "5 whys", "five whys", "root cause", "RCA this", "root cause analysis", "why does X keep happening", "what is really going on with X", "drill into this claim", "what are the intermediate steps", "walk me through how X actually leads to Y", "interrogate this forecast", "stress test this prediction", "where does this argument break", or any request to dissect a recurring problem or a large claim down to mechanism. Also triggers when the user pastes an incident report, a retro, a postmortem, a journal entry, an essay, a forecast, or a manifesto and asks to find the pattern or test the reasoning.
+metadata:
+  short-description: Root-cause a failure, or stress-test a claim
 ---
 
 # Five Whys (Ohno Protocol)
