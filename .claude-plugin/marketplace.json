@@ -1,5 +1,6 @@
 {
   "name": "five-whys",
+  "description": "Taiichi Ohno's Five Whys as an agent skill, run backward from a failure to its root cause or forward from a claim to the steps required to reach it.",
   "owner": {
     "name": "Ali Hafezi",
     "url": "https://github.com/aliihafezii"
