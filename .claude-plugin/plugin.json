@@ -1,0 +1,22 @@
+{
+  "name": "five-whys",
+  "description": "Taiichi Ohno's Five Whys run in both directions: backward from a failure to a systemic root cause and a countermeasure, and forward from a claim to the intermediate steps required to reach it, exposing the weakest link and the load-bearing assumption.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Ali Hafezi",
+    "url": "https://github.com/aliihafezii"
+  },
+  "homepage": "https://github.com/aliihafezii/five-whys",
+  "repository": "https://github.com/aliihafezii/five-whys",
+  "license": "MIT",
+  "keywords": [
+    "five-whys",
+    "root-cause-analysis",
+    "rca",
+    "postmortem",
+    "incident-response",
+    "critical-thinking",
+    "forecasting",
+    "toyota-production-system"
+  ]
+}

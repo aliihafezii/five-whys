@@ -1,0 +1,14 @@
+{
+  "name": "five-whys",
+  "owner": {
+    "name": "Ali Hafezi",
+    "url": "https://github.com/aliihafezii"
+  },
+  "plugins": [
+    {
+      "name": "five-whys",
+      "source": "./",
+      "description": "Taiichi Ohno's Five Whys run in both directions: backward from a failure to a systemic root cause and a countermeasure, and forward from a claim to the intermediate steps required to reach it."
+    }
+  ]
+}
