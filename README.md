@@ -86,7 +86,7 @@ Where does this argument break? [paste forecast]
 
 The method is Sakichi Toyoda's, formalized by Taiichi Ohno at Toyota and published in *Toyota Production System: Beyond Large-Scale Production* (1988). The pitfalls section draws on Eric Ries on the "Five Blames" trap and Art Smalley on why five is not a magic number.
 
-The prospective mode exists because of a public suggestion from [Bill Gurley](https://x.com/bgurley) in September 2026, that interviewers should use the Five Whys to make people asserting catastrophic endpoints walk through the intermediate steps required to reach them. That reframing, running the method forward against a claim rather than backward against a defect, is the part that turned into Mode B here.
+The prospective mode exists because of a [public suggestion from Bill Gurley](https://x.com/bgurley/status/2097690522437444050) that interviewers should use the Five Whys to make people asserting catastrophic endpoints walk through the intermediate steps required to reach them. That reframing, running the method forward against a claim rather than backward against a defect, is the part that turned into Mode B here.
 
 ## License
 
