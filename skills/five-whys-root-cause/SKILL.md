@@ -87,10 +87,11 @@ Walk it back upward: root cause, therefore A, therefore B, therefore the origina
 
 ### Step 5: Propose a countermeasure
 
-Two layers:
+Three layers. The first is optional and must be labelled as what it is.
 
-1. **Immediate countermeasure.** One concrete action doable in the next seven days. Specific. Schedulable. Addresses the root cause, not the symptom.
-2. **System change.** The standard, gate, habit, or design change that catches this failure mode earlier next time. This is what scales the lesson.
+1. **Containment (optional).** Whatever stops the bleeding today. This is allowed to treat the symptom, and it must be labelled as containment so nobody mistakes it for the fix. Replacing the fuse is containment.
+2. **Countermeasure.** One concrete action doable in the next seven days that addresses the root cause, not the symptom. Specific. Schedulable. Installing the strainer is the countermeasure.
+3. **System change.** The standard, gate, habit, or design change that catches this failure mode earlier next time. This is what scales the lesson.
 
 ### Step 6: Output
 
@@ -121,8 +122,11 @@ Use the template below. It is plain Markdown and pastes cleanly into any notes s
 ## Root Cause
 [One sentence. Structural, not personal.]
 
-## Countermeasure (immediate)
-[Concrete action. Specific. Schedulable.]
+## Containment (optional)
+[Symptom-level action taken today, labelled as such. Omit if none.]
+
+## Countermeasure (root cause, this week)
+[One concrete action. Specific. Schedulable. Addresses the root cause.]
 
 ## System Change (long-term)
 [The standard, gate, or design change that catches this failure mode earlier next time.]
@@ -133,21 +137,25 @@ Use the template below. It is plain Markdown and pastes cleanly into any notes s
 
 ## Worked example A1: personal habit
 
-**Problem:** I missed my evening writing session three days this week.
+**Problem:** On three of five weekdays this week, the 9 PM writing session did not happen. The standard is five sessions a week.
 
-1. Why did I miss writing? I was too drained after work.
-2. Why was I too drained? I scheduled writing for 9 PM, after dinner and family time.
-3. Why is 9 PM the writing slot? I assumed evenings are when I have the fewest meetings.
-4. Why not mornings? Mornings are spent on chat and email triage.
-5. Why does email own my mornings? There is no fixed protected writing block in my calendar.
+1. Why did the session not happen? By 9 PM there was no energy left and I chose sleep.
+2. Why was there no energy left at 9 PM? The session sits after a full workday, dinner, and family time, at the lowest point of the day.
+3. Why does the session sit at the lowest point of the day? It was placed in the only slot the calendar showed as empty.
+4. Why was 9 PM the only empty slot? Mornings are consumed by chat and email triage, which begin the moment I wake.
+5. Why does triage consume the mornings? No block in the calendar protects a morning hour from it, so whatever arrives first takes the time.
 
-**Therefore-chain:** No protected morning block, so email owns mornings, so writing is forced to 9 PM, so writing depends on residual energy, so on heavy days it gets skipped. Holds.
+**Therefore-chain:** No protected morning block, so triage takes the mornings, so the only empty slot is 9 PM, so the session sits at the daily energy low, so on heavy days there is nothing left and it is skipped. Holds, all five links.
 
-**Root cause:** No protected writing block exists in the calendar. Writing depends on residual energy, which is unreliable.
+**Root cause:** No protected block exists. Writing is scheduled into leftover time, and leftover time carries leftover energy.
 
-**Countermeasure (immediate):** Block 6:30 to 7:30 AM Monday to Friday as writing only. Phone in another room.
+**Containment:** None needed. Nothing is on fire.
 
-**System change:** Default rule: writing is morning first. Chat and email are not opened until the block is closed.
+**Countermeasure (root cause, this week):** Block 6:30 to 7:30 AM Monday to Friday as writing only. Phone in another room.
+
+**System change:** Writing is scheduled first, not into whatever gap remains. Chat and email do not open until the block is closed.
+
+**Notes:** Branch considered and ruled out: poor sleep. The three missed days were the three heaviest meeting days, which points at load rather than rest. No prior analysis on file.
 
 ## Worked example A2: operations incident
 
@@ -163,11 +171,13 @@ Use the template below. It is plain Markdown and pastes cleanly into any notes s
 
 **Root cause:** Schema changes can reach production without passing the review gate, because the gate is a convention rather than an enforced check.
 
-**Branch not followed:** The failure was silent. That is a separate chain, rooted in the job's exit status not being monitored. It shares no cause with the first chain and needs its own analysis. Do not merge them.
+**Containment:** Raise the job's statement timeout and rerun it so the dashboard refreshes tonight, and add the missing retention policy so the table stops growing. Neither touches the root cause. Both are labelled containment so nobody files this as fixed.
 
-**Countermeasure (immediate):** Add the missing retention policy and partition the events table. Add an alert on non-zero exit status for the job.
+**Countermeasure (root cause, this week):** Add a required CI status check that blocks merge of any migration creating a table without a declared retention policy. Ship it this week, so the gate exists before the next hotfix.
 
-**System change:** CI check that fails any migration adding a table without a declared retention policy or an explicit documented exemption.
+**System change:** Hotfixes go through the same check as everything else. The only bypass is an explicit exemption field in the migration itself, reviewed after the fact. The gate stops being a checklist and becomes a property of the pipeline.
+
+**Notes:** Branch not followed: the failure was silent. That is a separate chain, rooted in the job's exit status not being monitored. It shares no cause with this one and needs its own analysis. Do not merge them.
 
 ---
 
@@ -266,25 +276,27 @@ Step [N]. [The gap between what is assumed and what is demonstrated.]
 
 **The chain, endpoint backward:**
 
-| # | Step | Actor | Resource required | Tag |
-|---|------|-------|-------------------|-----|
-| 1 | Half our revenue-weighted customers are on their product | our customers | switching budget, migration time | unsupported |
-| 2 | Half our customers complete a migration | customer engineering teams | 3 to 6 engineer-weeks each, per our own onboarding data | unsupported, and never costed |
-| 3 | Half our customers decide to switch | buyers | an internal business case | plausible, the price delta is real |
-| 4 | Their product reaches parity on the two features that appear in 80 percent of our renewal calls | their engineering team | roughly 4 quarters at current headcount | plausible, not observed |
-| 5 | They price materially below us and sustain it | their finance function | gross-margin tolerance or subsidy | observed, happening today |
+| # | Step | Actor | Resource required | Tag | Evidence |
+|---|------|-------|-------------------|-----|----------|
+| 1 | Half our revenue-weighted customers are on their product | our customers | switching budget, migration time | Plausible | No barrier in principle. Nothing observed yet. |
+| 2 | Half our customers complete a migration | customer engineering teams | 3 to 6 engineer-weeks each | Plausible | The mechanism exists. Our own onboarding data supplies the cost, and the cost is what strains the deadline. |
+| 3 | Half our customers decide to switch | buyers | an internal business case | Plausible | The price delta is real and came up in two renewal calls this quarter. |
+| 4 | Their product reaches parity on the two features that appear in 80 percent of our renewal calls | their engineering team | roughly 4 quarters at current headcount | Plausible | Both features are on their public roadmap. Neither has shipped. |
+| 5 | They price materially below us and sustain it | their finance function | gross-margin tolerance or subsidy | Observed | Their published pricing, live today. |
 
-**Reverse read:** Today they underprice, therefore they could reach parity in about four quarters, therefore buyers could build a case, therefore they decide to switch, therefore they migrate, therefore they are on the competitor's product. The chain holds structurally and stalls at step 2.
+**Reverse read:** Today they underprice, therefore they could reach parity in about four quarters, therefore buyers could build a case, therefore they decide to switch, therefore they migrate, therefore they are on the competitor's product. Holds. Every step has a mechanism.
 
-**Weakest link:** Step 2. Migration cost is treated as zero. Our own data says 3 to 6 engineer-weeks per customer, and 18 months is roughly four quarters of parity work, plus a buying cycle, plus that migration, in sequence rather than in parallel.
+**Weakest link:** Step 2. Not because the mechanism is missing, but because its cost was never counted. Our own data says 3 to 6 engineer-weeks per customer, and 18 months is roughly four quarters of parity work, plus a buying cycle, plus that migration, in sequence rather than in parallel.
 
 **Load-bearing assumption:** That switching cost is negligible. If migration really is 3 to 6 engineer-weeks, the 18-month deadline fails on scheduling alone even if every other step lands perfectly.
 
-**Conjunction:** Five steps, partly correlated, since parity drives both the decision and the migration. Rough joint confidence for the full claim at 18 months: low. For the same claim at 36 months: materially higher.
+**Conjunction:** Five steps, partly correlated, since parity drives both the decision and the migration. Per-step confidence within 18 months, roughly: step 5 at 95 percent, step 4 at 70, step 3 at 60, step 2 at 50, step 1 at 90 given step 2. Multiplied as if independent: about 18 percent. Treat that as the floor. Adjusting for the correlation between steps 4, 3, and 2 puts it nearer 25 percent. Rerun at 36 months and step 2 rises to about 80 percent, which moves the independent figure to roughly 30 percent and the adjusted one higher still.
 
 **What would change my mind.** Toward: a published one-click migration tool from them, or three reference customers who switched in under two weeks. Against: our next four renewals citing migration cost as the reason for staying.
 
-**Verdict:** Mechanism sound, magnitude disputed. The threat is real and the deadline is not. The argument worth having is about the date and the switching cost, not about whether they are a threat.
+**Verdict:** Mechanism sound, magnitude disputed. Every step is observed or plausible, so the threat is real. The deadline is what fails. The argument worth having is about the date and the switching cost, not about whether they are a threat.
+
+**Notes:** Steelmanned on the claimant's behalf: the mechanism (price plus parity) and the definition of market share, neither of which was in the original. Alternative chain not explored: the competitor acquiring our largest customer's parent company, which reaches the same endpoint without steps 2 through 4 and is a separate analysis.
 
 ---
 

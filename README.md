@@ -31,8 +31,8 @@ It applies to any high-stakes forecast. A competitor will take half the market. 
 | Input | A failure that already happened, usually more than once | A claim about what will happen |
 | Question form | "Why did that happen?" | "What has to be true immediately before that?" |
 | Direction | Effect back to cause | Endpoint back to preconditions |
-| Catches | Fixing symptoms, blaming people | Hand-waving, skipped steps, unfalsifiable claims |
-| Output | Root cause plus countermeasure | Weakest link plus load-bearing assumption |
+| Failure it catches | Fixing symptoms, blaming people | Hand-waving, skipped steps, unfalsifiable claims |
+| Output | Root cause plus countermeasure | Weakest link plus the load-bearing assumption |
 | Ends at | A process you can change | A step already happening today, or a step nobody can describe |
 
 Mode B produces a fixed verdict, one of four:
@@ -44,7 +44,7 @@ Mode B produces a fixed verdict, one of four:
 
 ## Rules that keep it honest
 
-Both modes share five, and Mode B adds three of its own. The two that do the most work:
+Both modes share five rules, and Mode B adds eight of its own. The two that do the most work:
 
 **Never end at a person.** "Human error", "they dropped the ball", "I am lazy" are symptoms. Push to the process, environment, incentive, or physical constraint that allowed it.
 
@@ -58,7 +58,7 @@ Plus: steelman before you cut. If a step is missing, supply the strongest versio
 
 ```
 /plugin marketplace add aliihafezii/five-whys
-/plugin install five-whys
+/plugin install five-whys@five-whys
 ```
 
 **As a plain skill.** Clone once, then drop the folder wherever your agent looks for skills:
@@ -73,7 +73,7 @@ cp -r five-whys/skills/five-whys-root-cause ~/.claude/skills/
 cp -r five-whys/skills/five-whys-root-cause ~/.codex/skills/
 ```
 
-The skill is a single `SKILL.md` with standard YAML frontmatter (`name`, `description`), so it works unmodified in any agent that reads skill files. The `.claude-plugin/` manifests are Claude Code specific and are simply ignored elsewhere.
+The skill is a single `SKILL.md` with standard YAML frontmatter (`name`, `description`, plus an optional `metadata` block), so it works unmodified in any agent that reads skill files. The `.claude-plugin/` manifests are Claude Code specific and are simply ignored elsewhere.
 
 **As a document:** open [`skills/five-whys-root-cause/SKILL.md`](skills/five-whys-root-cause/SKILL.md) and use it by hand. It contains both protocols, both output templates, three worked examples, and the pitfalls list. No agent required.
 
